@@ -1,0 +1,37 @@
+{
+  "name": "FootballStatServer",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node .",
+    "pretest": "eslint .",
+    "posttest": "nsp check"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cheerio": "^0.22.0",
+    "compression": "^1.0.3",
+    "cors": "^2.5.2",
+    "dotenv": "^4.0.0",
+    "helmet": "^3.4.0",
+    "loopback": "^3.2.0",
+    "loopback-boot": "^2.6.5",
+    "loopback-component-explorer": "^4.0.0",
+    "loopback-datasource-juggler": "^3.1.1",
+    "node-sass-middleware": "^0.10.1",
+    "pug": "^2.0.0-beta6",
+    "serve-favicon": "^2.0.1",
+    "strong-error-handler": "^1.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.13.1",
+    "nsp": "^2.1.0"
+  },
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "license": "UNLICENSED",
+  "description": "FootballStatServer"
+}
