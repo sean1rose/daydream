@@ -37,12 +37,17 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
+    "bootstrap-sass": "^3.3.7",
     "eslint": "^3.13.1",
+    "node-sass": "^4.3.0",
     "nsp": "^2.1.0"
   },
   "repository": {
     "type": "",
     "url": ""
+  },
+  "engines": {
+    "node": ">= 6.6.x"
   },
   "license": "UNLICENSED",
   "description": "FootballStatServer"
