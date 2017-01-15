@@ -1,0 +1,40 @@
+{
+  "name": "userIdentity",
+  "description": "A model representing user identities for users.",
+  "plural": "userIdentities",
+  "base": "UserIdentity",
+  "strict": "validate",
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "created": {
+      "type": "date",
+      "required": true,
+      "defaultFn": "now",
+      "postgresql": {
+        "columnName": "created",
+        "dataType": "timestamp with time zone",
+        "nullable": "NO"
+      }
+    },
+    "profile": {
+      "type": "Object",
+      "postgresql": {
+        "columnName": "profile",
+        "dataType": "character varying",
+        "dataLength": 10000
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,283 @@
+{
+  "name": "user",
+  "description": "A model representing our users.",
+  "plural": "users",
+  "base": "User",
+  "strict": "validate",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "ClearBaseAcls": true
+  },
+  "hidden": [
+    "realm",
+    "challenges",
+    "emailVerified",
+    "credentials",
+    "status",
+    "stripeCardId",
+    "stripeCustomerId",
+    "stripeSubscriptionId"
+  ],
+  "protected": [
+    "accountType",
+    "colorScheme",
+    "email",
+    "realm",
+    "challenges",
+    "credentials",
+    "emailVerified",
+    "hasStripe",
+    "setup",
+    "timezone",
+    "lastUpdated",
+    "created",
+    "status",
+    "hasStripe",
+    "stripeCardId",
+    "stripeCustomerId",
+    "stripeSubscriptionId",
+    "organizationId"
+  ],
+  "properties": {
+    "accountType": {
+      "type": "string",
+      "id": false,
+      "required": true,
+      "default": "basic"
+    },
+    "created": {
+      "type": "date",
+      "required": true,
+      "defaultFn": "now",
+      "postgresql": {
+        "columnName": "created",
+        "dataType": "timestamp with time zone",
+        "nullable": "NO"
+      }
+    },
+    "colorScheme": {
+      "type": "string",
+      "required": true,
+      "default": "default"
+    },
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "hasStripe": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "profilePictureURL": {
+      "type": "string"
+    },
+    "setup": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "stripeCardId": {
+      "type": "string"
+    },
+    "stripeCustomerId": {
+      "type": "string"
+    },
+    "stripeSubscriptionId": {
+      "type": "string"
+    },
+    "timezone": {
+      "type": "string",
+      "required": true,
+      "default": "America/Los_Angeles"
+    },
+    "notificationSettings": {
+      "type": "object",
+      "default": {
+        "all": true,
+        "dueDates": true,
+        "roles": true,
+        "comments": true,
+        "milestones": true,
+        "priority": true
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "accessToken",
+      "foreignKey": "userId"
+    },
+    "credentials": {
+      "type": "hasMany",
+      "model": "userCredential",
+      "foreignKey": "userId"
+    },
+    "devices": {
+      "type": "hasMany",
+      "model": "device",
+      "foreignKey": "userId"
+    },
+    "identities": {
+      "type": "hasMany",
+      "model": "userIdentity",
+      "foreignKey": "userId"
+    },
+    "goalsCreated": {
+      "type": "hasMany",
+      "model": "goal",
+      "foreignKey": "userId"
+    },
+    "rolesForGoals": {
+      "type": "hasMany",
+      "model": "goalRoles",
+      "foreignKey": "goalId"
+    },
+    "reminders": {
+      "type": "hasAndBelongsToMany",
+      "model": "reminder",
+      "foreignKey": "reminderUserId"
+    },
+    "tasksCreated": {
+      "type": "hasMany",
+      "model": "task",
+      "foreignKey": "userId"
+    },
+    "rolesForTasks": {
+      "type": "hasMany",
+      "model": "taskRole",
+      "foreignKey": "taskId"
+    },
+    "rolesForTeams": {
+      "type": "hasMany",
+      "model": "teamRole",
+      "foreignKey": "userId"
+    },
+    "roleForOrganization": {
+      "type": "hasOne",
+      "model": "organizationRole",
+      "foreignKey": "userId"
+    },
+    "notificationsCreated": {
+      "type": "hasMany",
+      "model": "notification",
+      "foreignKey": "creatorId"
+    },
+    "comments": {
+      "type": "hasMany",
+      "model": "comment",
+      "foreignKey": "userId"
+    },
+    "notificationMappings": {
+      "type": "hasMany",
+      "model": "userNotification",
+      "foreignKey": "userId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "findById"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "findOne"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "discover"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "ALLOW",
+      "property": "login"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "logout"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "ALLOW",
+      "property": "resetPassword"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "findAllUnrelatedTasks"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "confirm"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "teamAdmin",
+      "permission": "ALLOW",
+      "property": "delete"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "teamAdmin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "teamMember",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}
