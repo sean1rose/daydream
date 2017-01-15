@@ -1,0 +1,63 @@
+//- this will inherit from layout.jade
+extends ../layouts/layout
+
+block content
+  section.container
+    .row
+      h1.text-center Sign in
+      if (verified == "true")
+        .col-sm-2.col-md-3.col-lg-4
+        .col-sm-8.col-md-6.col-lg-4
+          .alert.alert-success(role="alert") Email verified. You can now log in.
+        .col-sm-2.col-md-3.col-lg-4
+      else if (verified == "false")
+        .col-sm-2.col-md-3.col-lg-4
+        .col-sm-8.col-md-6.col-lg-4
+          .alert.alert-success(role="alert") Thanks for choosing Daydream! We just need you to verify your email address before your sign up is completed! Please check your email and click on the verification link before signing in.
+      else if (verified == "resend")
+        .col-sm-2.col-md-3.col-lg-4
+        .col-sm-8.col-md-6.col-lg-4
+          .alert.alert-success(role="alert") We resent an email to your email address. Please check your email and click on the verification link before signing in.
+        .col-sm-2.col-md-3.col-lg-4
+      else if (typeof emailError !== "undefined")
+        .col-sm-2.col-md-3.col-lg-4
+        .col-sm-8.col-md-6.col-lg-4
+          .alert.alert-danger(role="alert")
+            p This email has not been verified. Would you like to resend the verification email?
+            a(href="/email/resend") Resend
+        .col-sm-2.col-md-3.col-lg-4
+      else if (typeof error !== "undefined")
+        .col-sm-2.col-md-3.col-lg-4
+        .col-sm-8.col-md-6.col-lg-4
+          .alert.alert-danger(role="alert")
+            p Invalid username/password combination. Please check your entries and try again.
+        .col-sm-2.col-md-3.col-lg-4
+      else if (verified == "reset")
+        .col-sm-2.col-md-3.col-lg-4
+        .col-sm-8.col-md-6.col-lg-4
+          .alert.alert-success(role="alert") We sent an email to your email address. Please check your email and click on the link to reset your password.
+        .col-sm-2.col-md-3.col-lg-4
+      else if (verified == "changed")
+        .col-sm-2.col-md-3.col-lg-4
+        .col-sm-8.col-md-6.col-lg-4
+          .alert.alert-success(role="alert") Your password was successfully changed.
+        .col-sm-2.col-md-3.col-lg-4
+    .row
+      .col-sm-2.col-md-3.col-lg-4
+      .col-sm-8.col-md-6.col-lg-4
+        form#signin-form(role="form", action="/auth/local", method="post")
+          .form-group
+            label(for="email") Your email
+            input#email.form-control(type="text", name="email", placeholder="Enter your email", data-sanitize="trim", data-validation="email length", data-validation-length="max512", data-validation-error-msg="Please enter a valid e-mail.")
+            .help-block.with-errors
+          .form-group
+            label(for="password") Password
+            a(style="float: right;" href="/send-reset") Forgot your password?
+            input#password.form-control(type="password", name="password", placeholder="Password")
+            .help-block.with-errors
+          button.btn.btn-primary.btn-block(type="submit") Sign In
+        .other-signin-container.text-center
+          .hr-label
+            span or
+          a.btn.btn-default.btn-block(href="/auth/google", role="button") Sign In with Google
+      .col-sm-2.col-md-3.col-lg-4

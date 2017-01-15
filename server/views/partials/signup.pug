@@ -1,0 +1,32 @@
+//- Created by mike on 3/1/16.
+
+block signup
+  form#signup-form(role="form", action="/api/users", method="post")
+    .form-group
+      label(for="name") Your Name
+      - const pattern = "([a-zA-Z]+\\s){1}([a-zA-Z]+\\s?){1,4}"
+      - var name = ""
+      if typeof firstName == "string" && typeof lastName == "string"
+        - name = firstName + " " + lastName
+      else if typeof firstName == "string"
+        - name = firstName
+      input#name.form-control(type="text", name="name", placeholder="What is your name?", data-sanitize="trim", data-validation="required length custom", data-validation-length="2-64", data-validation-regexp!="#{pattern}", data-validation-error-msg="Please enter your first and last name."  value="#{name}")
+    .form-group
+      label(for="email") Your Email
+      if typeof email != "string"
+        - email = ""
+      input#email.form-control(type="text", name="email", placeholder="What is your email?", data-sanitize="trim", data-validation="required email length", data-validation-length="max512", data-validation-error-msg="Please enter a valid e-mail.", value="#{email}" )
+    .form-group
+      label(for="password") Your Password
+      input#password.form-control(type="password", name="password", placeholder="What password would you like?", data-validation="length", data-validation-length="4-128", data-validation-error-msg="The password must be between 4 to 128 characters.")
+      .progress
+        #password-strength-meter.progress-bar(role="progressbar", aria-valuenow="0", aria-valuemin="0", aria-valuemax="100", style="width: 0%")
+          span.sr-only Password Strength Meter
+    input#account-type.hidden(type="text", name="accountType", value="basic")
+    button.btn.btn-primary.btn-block(title="Sign Up For Free", type="submit") Sign Up For Free
+  .other-signup-container.text-center
+    .hr-label
+      span or
+    a.btn.btn-default.btn-block(href="/auth/google", role="button") Sign Up with Google
+
+

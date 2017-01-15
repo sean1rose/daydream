@@ -1,0 +1,15 @@
+//- Created by mike on 3/2/16.
+
+doctype html
+html(lang="en")
+  include ../partials/head
+    link(href="/styles/app/index.css", rel="stylesheet", type="text/css")
+  body
+    //- have a app container for additional styling on background
+    .hidden#reactInfo
+      = JSON.stringify({accessToken: accessToken})
+    #app-container.container-fluid
+      nav#main-nav.navbar.navbar-default.navbar-fixed-top
+    //- Load Scripts
+    script(src="/scripts/app/index.js")
+    block scripts

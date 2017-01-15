@@ -1,0 +1,43 @@
+head
+  meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
+
+  title #{title}
+
+  meta(name="description", content="Football Stats")
+  link(rel="canonical", href="https://#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}")
+
+  //- SEO Meta Data
+  meta(property="og:locale", content="en_US")
+  meta(property="og:type", content="website")
+  meta(property="og:title", content="Daydream - Football Stats")
+  meta(property="og:description", content="Daydream - Football Stats")
+  meta(property="og:url", content="https://#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}")
+  meta(property="og:site_name", content="Daydream")
+  meta(name="twitter:card", content="summary")
+  meta(name="twitter:description", content="Football Stats")
+  meta(name="twitter:title", content="Daydream")
+  meta(name="twitter:domain", content="Daydream")
+
+  //- Behavioral Meta Data
+  meta(charset="utf-8")
+  meta(name="x-csrf-token", content=_csrf)
+  meta(http-equiv="X-UA-Compatible", content="IE=edge")
+  link(rel="shortcut icon", href="https://#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}/images/favicon.ico", type="image/x-icon")
+  link(rel="apple-touch-icon", href="https://#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}/images/Icon-60.png")
+  link(rel="apple-touch-icon", sizes="76x76", href="https://#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}/images/Icon-76.png")
+  link(rel="apple-touch-icon", sizes="120x120", href="https://#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}/images/Icon-60@2x.png")
+  link(rel="apple-touch-icon", sizes="152x152", href="https://#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}/images/Icon-76@2x.png")
+  link(rel="apple-touch-icon", sizes="167x167", href="https://#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}/images/Icon-iPadPro@2x.png")
+  link(rel="apple-touch-icon", sizes="180x180", href="https://#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}/images/Icon-60@3x.png")
+  link(rel="profile", href="http://gmpg.org/xfn/11")
+  meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+  link(rel="alternate", href="https://#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}/", hreflang="en")
+
+  //- Scripts
+  script(type="application/ld+json").
+    {"@context":"http:\\/\/schema.org","@type":"WebSite","url":"https:\/\/#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}\/","name":"Daydream","potentialAction":{"@type":"SearchAction","target":"https:\/\/#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}\/?s={search_term_string}","query-input":"required name=search_term_string"}}
+  script(type="application/ld+json").
+    {"@context":"http:\\/\/schema.org","@type":"Person","url":"https:\/\/#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}","sameAs":[],"name":"Daydream"}
+
+  //- Styles
+  block styles

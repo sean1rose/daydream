@@ -36,7 +36,7 @@ module.exports = function(app) {
       res.redirect("/app")
       return
     }
-    res.render("index", {
+    res.render("pages/index", {
       title: "Fantasy Football Stats - Daydream",
       url: req.url,
       host: host(),
@@ -44,14 +44,6 @@ module.exports = function(app) {
     })
   })
 
-  app.get("/pricing", function(req, res) {
-    res.render("pricing", {
-      title: "Pricing - Daydream",
-      url: req.url,
-      host: host(),
-      port: port()
-    })
-  })
   app.get("/signin", function(req, res) {
     var emailError
     const user = req.user
@@ -68,7 +60,7 @@ module.exports = function(app) {
         return
       }
     }
-    res.render("signin", {
+    res.render("pages/signin", {
       title: "Sign In - Daydream",
       url: req.url,
       host: host(),
@@ -77,33 +69,6 @@ module.exports = function(app) {
       emailError: emailError,
       verified: req.query.verified,
       user: req.user
-    })
-  })
-
-  app.get("/email/resend", ensureLoggedIn("/signin"), function(req, res) {
-    app.models.user.findById(
-        req.user.id
-    ).then(userObj => {
-      const options = {
-        type: "email",
-        to: userObj.__data.email,
-        from: "no-reply@example.com",
-        subject: "Please verify your email address",
-        template: path.resolve(__dirname, "../../src/views/email/verify.ejs"),
-        text: "Thanks for choosing Daydream!\nWe just need you to verify your email address before your sign up is completed! Please click the link below to verify your email:\n\t{href}\nThanks,\n- The Daydream Team",
-        redirect: "/signin?verified=true",
-        protocol: "https",
-        user: userObj,
-        host: host(),
-        port: port()
-      }
-      return userObj.verify(options, function(err) {
-        if (err) {
-          return res.status(500).send(err)
-        }
-        req.logout()
-        res.redirect("/signin?verified=resend")
-      })
     })
   })
 
@@ -139,7 +104,7 @@ module.exports = function(app) {
   })
 
   app.get("/signed-out", function(req, res) {
-    res.render("signed-out", {
+    res.render("pages/signed-out", {
       title: "Daydream",
       host: host(),
       port: port()
@@ -152,7 +117,7 @@ module.exports = function(app) {
       res.redirect("/app/dashboard")
       return
     }
-      res.render("signup", {
+      res.render("pages/signup", {
         title: "Create An Account - Daydream",
         url: req.url,
         host: host(),
@@ -164,16 +129,8 @@ module.exports = function(app) {
   })
 
   // reset password
-  app.get("/send-reset", function(req, res) {
-    res.render("send-reset", {
-      title: "Reset Password - Daydream",
-      host: host(),
-      port: port()
-    })
-  })
-
   app.get("/reset-password", function(req, res) {
-    res.render("reset-password", {
+    res.render("pages/reset-password", {
       title: "Reset Password - Daydream",
       host: host(),
       port: port(),
@@ -181,50 +138,9 @@ module.exports = function(app) {
     })
   })
 
-  // footer links
-  app.get("/security", function(req, res) {
-    res.render("security", {
-      title: "Security - Daydream",
-      host: host(),
-      port: port()
-    })
-  })
-
   app.get("/about", function(req, res) {
-    res.render("about", {
+    res.render("pages/about", {
       title: "About - Daydream",
-      host: host(),
-      port: port()
-    })
-  })
-
-  app.get("/contact", function(req, res) {
-    res.render("contact", {
-      title: "Contact - Daydream",
-      host: host(),
-      port: port()
-    })
-  })
-
-  app.get("/acceptable-use", function(req, res) {
-    res.render("acceptable-use", {
-      title: "Acceptable Use - Daydream",
-      host: host(),
-      port: port()
-    })
-  })
-
-  app.get("/privacy", function(req, res) {
-    res.render("privacy", {
-      title: "Privacy - Daydream",
-      host: host(),
-      port: port()
-    })
-  })
-
-  app.get("/terms", function(req, res) {
-    res.render("terms", {
-      title: "Terms of Service - Daydream",
       host: host(),
       port: port()
     })
@@ -232,18 +148,6 @@ module.exports = function(app) {
 
   // other links -- non-navigation links
   if (process.env.NODE_ENV === "development") {
-    app.get("/email/invite", function(req, res) {
-      res.render(__dirname + "/../../src/views/email/invite.ejs", {
-        firstName: "Jason",
-        user: {
-          firstName: "Mike",
-          lastName: "Li"
-        },
-        host: host(),
-        port: port()
-      })
-    })
-
     app.get("/email/verify", function(req, res) {
       res.render(__dirname + "/../../src/views/email/verify.ejs", {
         text: "Thanks for choosing Daydream!\nWe just need your to verify your email address before your sign up is completed! Please click the link below to verify your email:\n\t{href}\nThanks,\n- The Daydream Team",
@@ -258,7 +162,7 @@ module.exports = function(app) {
   }
 
   app.get("/reset-password", function(req, res) {
-    res.render("password-reset", {
+    res.render("pages/password-reset", {
       host: host(),
       port: port()
     })

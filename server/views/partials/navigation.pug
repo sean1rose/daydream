@@ -1,0 +1,13 @@
+nav#main-nav.navbar.navbar-default.navbar-fixed-top
+  .nav-left
+    a.logo(href="https://#{host}#{(process.env.NODE_ENV == 'development' ? ':' + port : '')}")
+      .icon
+      h4.wordmark Daydream
+  //- User is *not* Logged In
+  ul.nav-right.list-inline
+    li(class=url=="/"?"hidden":undefined)
+      a(href="/") Home
+    li
+      a(href="/signin", class=url=="/signin"?"active":undefined) Sign in
+    li
+      a(href="/signup", class=url=="/signup"?"active":undefined) Sign Up

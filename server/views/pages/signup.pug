@@ -1,0 +1,15 @@
+//- Created by mike on 3/1/16.
+
+//- this will inherit from layout.jade
+extends ../layouts/layout
+
+block content
+  section.container
+    .row.text-center
+      h1 Create your Daydream account
+    .row
+      .col-md-4.col-xs-1
+      .col-md-4.col-xs-10
+        include ../partials/signup
+        block signup
+      .col-md-4.col-xs-1
