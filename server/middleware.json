@@ -1,6 +1,8 @@
 {
   "initial:before": {
-    "loopback#favicon": {}
+    "loopback#favicon": {
+      "params": "$!../public/images/favicon.ico"
+    }
   },
   "initial": {
     "compression": {},
@@ -42,6 +44,9 @@
     }
   },
   "files": {
+    "loopback#static": {
+      "params": "$!../public"
+    }
   },
   "final": {
     "loopback#urlNotFound": {}
