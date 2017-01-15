@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="create-db" type="js.build_tools.npm" factoryName="npm">
+    <package-json value="$PROJECT_DIR$/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="create-db" />
+    </scripts>
+    <node-interpreter value="project" />
+    <envs />
+    <method>
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_Postgres.app" />
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_Redis.app" />
+    </method>
+  </configuration>
+</component>

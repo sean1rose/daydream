@@ -1,6 +1,5 @@
 *.csv
 *.dat
-*.iml
 *.log
 *.out
 *.pid
@@ -9,7 +8,6 @@
 *.swo
 *.swp
 *.tgz
-*.xml
 .DS_Store
 .idea/vcs.xml
 .project
