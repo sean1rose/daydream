@@ -1,0 +1,35 @@
+{
+  "name": "season",
+  "plural": "seasons",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "games": {
+      "type": "hasMany",
+      "model": "game",
+      "foreignKey": "seasonId"
+    },
+    "players": {
+      "type": "hasAndBelongsToMany",
+      "model": "player",
+      "foreignKey": "seasonId"
+    },
+    "teams": {
+      "type": "hasAndBelongsToMany",
+      "model": "team",
+      "foreignKey": "seasonId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -52,5 +52,25 @@
     "public": false,
     "$promise": {},
     "$resolved": true
+  },
+  "league": {
+    "dataSource": "db",
+    "public": true
+  },
+  "team": {
+    "dataSource": "db",
+    "public": true
+  },
+  "game": {
+    "dataSource": "db",
+    "public": true
+  },
+  "player": {
+    "dataSource": "db",
+    "public": true
+  },
+  "season": {
+    "dataSource": "db",
+    "public": true
   }
 }

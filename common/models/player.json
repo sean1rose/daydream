@@ -1,0 +1,64 @@
+{
+  "name": "player",
+  "plural": "players",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "position": {
+      "type": "string",
+      "required": true
+    },
+    "totalPoints": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "touchdowns": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "targets": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "yards": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "pprPoints": {
+      "type": "number",
+      "default": 0
+    },
+    "receptions": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "throwingTouchDowns": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {
+    "teams": {
+      "type": "hasAndBelongsToMany",
+      "model": "team",
+      "foreignKey": "playerId"
+    },
+    "seasons": {
+      "type": "hasAndBelongsToMany",
+      "model": "season",
+      "foreignKey": "playerId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

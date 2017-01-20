@@ -1,0 +1,38 @@
+{
+  "name": "game",
+  "plural": "games",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "week": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "teams": {
+      "type": "hasAndBelongsToMany",
+      "model": "team",
+      "foreignKey": "gameId"
+    },
+    "season": {
+      "type": "belongsTo",
+      "model": "season",
+      "foreignKey": "seasonId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
