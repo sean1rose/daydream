@@ -1,5 +1,5 @@
-'use strict';
+"use strict"
 
-module.exports = function(League) {
+module.exports = function (League) {
 
-};
+}

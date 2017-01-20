@@ -20,23 +20,23 @@ ds.adapter.pg.connect((err, client, done) => {
     lbTables = lbTables.slice(2)
     // production database model last updated 8/30/2016
     automigratePromise = new Promise((resolve) => {
-        ds.autoupdate(lbTables, (err) => {
-          if (err) {
-            throw err
-          }
-          console.log("The following Loopback tables:\n")
-          for (let lbTable of lbTables) {
-            console.log(lbTable)
-          }
-          console.log("\nwere created in " + ds.adapter.name)
-          console.log("\n" + lbTables.length + " Loopback tables updated in " + ds.adapter.name + "\n")
-          resolve()
-        })
-      }).then(() => {
-        const sqlQuery = "\
-        "
-        return client.query(sqlQuery)
+      ds.autoupdate(lbTables, (err) => {
+        if (err) {
+          throw err
+        }
+        console.log("The following Loopback tables:\n")
+        for (let lbTable of lbTables) {
+          console.log(lbTable)
+        }
+        console.log("\nwere created in " + ds.adapter.name)
+        console.log("\n" + lbTables.length + " Loopback tables updated in " + ds.adapter.name + "\n")
+        resolve()
       })
+    }).then(() => {
+      const sqlQuery = "\
+        "
+      return client.query(sqlQuery)
+    })
     // add sql queries to update the foreign keys for the database if needed
   } else {
     // create the tables if UPDATE is not specified as part of the environment variables

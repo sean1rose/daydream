@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
-    "start": "node .",
-    "pretest": "eslint .",
     "create-db": "node server/create-lb-tables.js",
-    "update-db": "UPDATE=true node server/create-lb-tables.js",
-    "posttest": "nsp check"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "pretest": "eslint .",
+    "posttest": "nsp check",
+    "start": "node .",
+    "update-db": "UPDATE=true node server/create-lb-tables.js"
   },
   "dependencies": {
     "bluebird": "^3.4.7",

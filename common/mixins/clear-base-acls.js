@@ -6,7 +6,7 @@
 
 const path = require("path")
 
-function slugify(name) {
+function slugify (name) {
   name = name.replace(/^[A-Z]+/, s => s.toLowerCase())
   return name.replace(/[A-Z]/g, s => "-" + s.toLowerCase())
 }

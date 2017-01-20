@@ -13,7 +13,7 @@ let assetValues = Object.keys(webpackAssets).map(key => {
   return webpackAssets[key]
 })
 let config
-if (process.env.NODE_ENV == "staging") {
+if (process.env.NODE_ENV === "staging") {
   config = require("./server/config.staging.json")
 } else {
   config = require("./server/config.production.json")
@@ -41,7 +41,7 @@ fetch("https://api.cloudflare.com/client/v4/zones?name=daydream.com&status=activ
     // iterate through the zones and clear them based off webpack-assets.json
     let clearZonesPromise = []
     for (let zone of responseJSON.result) {
-      if (!zone.paused && zone.permissions.indexOf("#zone:edit") != -1) {
+      if (!zone.paused && zone.permissions.indexOf("#zone:edit") !== -1) {
         clearZonesPromise.push(fetch(`https://api.cloudflare.com/client/v4/zones/${zone.id}/purge_cache`, {
           headers: {
             "X-Auth-Email": env.cloudflare.email,

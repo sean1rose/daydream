@@ -2,16 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6084bfd0-a5e8-4f33-9fa6-f461f5a775a5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/access-token.json" afterPath="$PROJECT_DIR$/common/models/access-token.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/user-credential.json" afterPath="$PROJECT_DIR$/common/models/user-credential.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/user-identity.json" afterPath="$PROJECT_DIR$/common/models/user-identity.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/user.json" afterPath="$PROJECT_DIR$/common/models/user.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/component-config.json" afterPath="$PROJECT_DIR$/server/component-config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config.json" afterPath="$PROJECT_DIR$/server/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/datasources.json" afterPath="$PROJECT_DIR$/server/datasources.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/middleware.json" afterPath="$PROJECT_DIR$/server/middleware.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/model-config.json" afterPath="$PROJECT_DIR$/server/model-config.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clear-cloudflare-cache.js" afterPath="$PROJECT_DIR$/clear-cloudflare-cache.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/mixins/clear-base-acls.js" afterPath="$PROJECT_DIR$/common/mixins/clear-base-acls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/access-token.js" afterPath="$PROJECT_DIR$/common/models/access-token.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/game.js" afterPath="$PROJECT_DIR$/common/models/game.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/league.js" afterPath="$PROJECT_DIR$/common/models/league.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/player.js" afterPath="$PROJECT_DIR$/common/models/player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/season.js" afterPath="$PROJECT_DIR$/common/models/season.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/team.js" afterPath="$PROJECT_DIR$/common/models/team.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/user-credential.js" afterPath="$PROJECT_DIR$/common/models/user-credential.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/user-identity.js" afterPath="$PROJECT_DIR$/common/models/user-identity.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/user.js" afterPath="$PROJECT_DIR$/common/models/user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/boot/authentication.js" afterPath="$PROJECT_DIR$/server/boot/authentication.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/boot/routes.js" afterPath="$PROJECT_DIR$/server/boot/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/create-lb-tables.js" afterPath="$PROJECT_DIR$/server/create-lb-tables.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/server.js" afterPath="$PROJECT_DIR$/server/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.js" afterPath="$PROJECT_DIR$/webpack.config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.production.config.js" afterPath="$PROJECT_DIR$/webpack.production.config.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,11 +37,61 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="game.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="game.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/models/game.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="528">
               <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clear-cloudflare-cache.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clear-cloudflare-cache.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="446">
+              <caret line="43" column="68" lean-forward="false" selection-start-line="43" selection-start-column="68" selection-end-line="43" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/boot/routes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="115" column="16" lean-forward="false" selection-start-line="115" selection-start-column="16" selection-end-line="115" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="error.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/views/ajax/error.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/models/game.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -79,30 +137,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="team.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/models/team.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PasswordReset.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/views/email/PasswordReset.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="61" column="46" lean-forward="false" selection-start-line="61" selection-start-column="46" selection-end-line="61" selection-end-column="46" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#td#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#table#0;n#td#0;n#tr#2;n#table#0;n#td#0;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#1;n#td#0;n#tr#0;n#table#0;n#td#0;n#tr#2;n#table#0;n#td#0;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -110,10 +144,12 @@
       <find>instataskapp</find>
       <find>InstaTask</find>
       <find>instatask</find>
+      <find>==</find>
     </findStrings>
     <replaceStrings>
       <replace>Daydream</replace>
       <replace>daydream</replace>
+      <replace>===</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\Users\bartf\Documents\daydream</dir>
@@ -126,8 +162,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/clear-cloudflare-cache.js" />
         <option value="$PROJECT_DIR$/server/views/email/PasswordReset.ejs" />
         <option value="$PROJECT_DIR$/server/views/email/invite.ejs" />
         <option value="$PROJECT_DIR$/server/views/email/verify.ejs" />
@@ -135,6 +169,9 @@
         <option value="$PROJECT_DIR$/common/models/game.json" />
         <option value="$PROJECT_DIR$/common/models/season.json" />
         <option value="$PROJECT_DIR$/common/models/player.json" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/clear-cloudflare-cache.js" />
+        <option value="$PROJECT_DIR$/server/boot/routes.js" />
       </list>
     </option>
   </component>
@@ -205,11 +242,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -223,7 +256,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="boot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -278,12 +315,12 @@
       <workItem from="1484514182141" duration="242000" />
       <workItem from="1484514505584" duration="46000" />
       <workItem from="1484514569295" duration="701000" />
-      <workItem from="1484881956339" duration="3192000" />
+      <workItem from="1484881956339" duration="3468000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4181000" />
+    <option name="totallyTimeSpent" value="4457000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-1209" width="1938" height="1168" extended-state="6" />
@@ -363,22 +400,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clear-cloudflare-cache.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="43" column="45" lean-forward="false" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -472,6 +493,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/models/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clear-cloudflare-cache.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="43" column="68" lean-forward="false" selection-start-line="43" selection-start-column="68" selection-end-line="43" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/views/ajax/error.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/boot/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="115" column="16" lean-forward="false" selection-start-line="115" selection-start-column="16" selection-end-line="115" selection-end-column="16" />
           <folding />
         </state>
       </provider>

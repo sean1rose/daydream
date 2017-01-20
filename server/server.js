@@ -28,9 +28,9 @@ app.use(flash())
 app.set("views", path.join(__dirname, "./views"))
 app.set("view engine", "pug")
 
-app.start = function() {
+app.start = function () {
   // start the web server
-  return app.listen(function() {
+  return app.listen(function () {
     app.emit("started")
     const baseUrl = app.get("url").replace(/\/$/, "")
     console.log("Web server listening at: %s", baseUrl)
@@ -38,17 +38,17 @@ app.start = function() {
       const explorerPath = app.get("loopback-component-explorer").mountPath
       console.log("Browse your REST API at %s%s", baseUrl, explorerPath)
     }
-})
+  })
 }
 
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
-boot(app, __dirname, function(err) {
-  if (err) throw err
+boot(app, __dirname, function (err) {
+  if (err) {throw err}
 
   // start the server if `$ node server.js`
   if (require.main === module)
-    app.start()
+    {app.start()}
 })
 
 
@@ -70,7 +70,7 @@ const session = require("express-session")
 // store session information on Redis
 const RedisStore = require("connect-redis")(session)
 
-app.middleware("session:before", cookieParser(app.get("cookieSecret"), {maxAge: 86400}))
+app.middleware("session:before", cookieParser(app.get("cookieSecret"), { maxAge: 86400 }))
 
 let options
 if (process.env.NODE_ENV === "development") {
@@ -103,7 +103,7 @@ passportConfigurator.setupModels({
   userCredentialModel: app.models.userCredential
 })
 
-passportConfigurator.configureProvider = function(name, options) {
+passportConfigurator.configureProvider = function (name, options) {
   const self = this
   options = options || {}
   const link = options.link
@@ -149,27 +149,27 @@ passportConfigurator.configureProvider = function(name, options) {
 
   const session = !!options.session
 
-  const loginCallback = options.loginCallback || function(req, done) {
-      return function(err, user, identity, token) {
-        const authInfo = {
-          identity: identity
-        }
-        if (token) {
-          authInfo.accessToken = token
-        }
-        done(err, user, authInfo)
+  const loginCallback = options.loginCallback || function (req, done) {
+    return function (err, user, identity, token) {
+      const authInfo = {
+        identity: identity
       }
+      if (token) {
+        authInfo.accessToken = token
+      }
+      done(err, user, authInfo)
     }
+  }
 
   switch (authType) {
     case "ldap":
       passport.use(name, new AuthStrategy(_.defaults({
-          usernameField: options.usernameField || "username",
-          passwordField: options.passwordField || "password",
-          session: options.session, authInfo: true,
-          passReqToCallback: true
-        }, options),
-        function(req, user, done) {
+        usernameField: options.usernameField || "username",
+        passwordField: options.passwordField || "password",
+        session: options.session, authInfo: true,
+        passReqToCallback: true
+      }, options),
+        function (req, user, done) {
           if (user) {
             const LdapAttributeForUsername = options.LdapAttributeForUsername || "cn"
             const LdapAttributeForMail = options.LdapAttributeForMail || "mail"
@@ -180,7 +180,7 @@ passportConfigurator.configureProvider = function(name, options) {
               id: externalId
             }
             if (email) {
-              profile.emails = [{value: email}]
+              profile.emails = [ { value: email } ]
             }
             const OptionsForCreation = _.defaults({
               autoLogin: true
@@ -196,23 +196,23 @@ passportConfigurator.configureProvider = function(name, options) {
       break
     case "local":
       passport.use(name, new AuthStrategy(_.defaults({
-          usernameField: options.usernameField || "username",
-          passwordField: options.passwordField || "password",
-          emailVerificationRequired: options.emailVerificationRequired || false,
-          session: options.session, authInfo: true
-        }, options),
-        function(username, password, done) {
+        usernameField: options.usernameField || "username",
+        passwordField: options.passwordField || "password",
+        emailVerificationRequired: options.emailVerificationRequired || false,
+        session: options.session, authInfo: true
+      }, options),
+        function (username, password, done) {
           const query = {
             where: {
               or: [
-                {username: username},
-                {email: username}
+                { username: username },
+                { email: username }
               ]
             }
           }
-          self.userModel.findOne(query, function(err, user) {
+          self.userModel.findOne(query, function (err, user) {
             if (err)
-              return done(err)
+              {return done(err)}
 
             if (user) {
               const u = user.toJSON()
@@ -237,31 +237,31 @@ passportConfigurator.configureProvider = function(name, options) {
               if (options.setAccessToken) {
                 switch (options.usernameField) {
                   case  "email":
-                    login({email: username, password: password})
+                    login({ email: username, password: password })
                     break
                   case "username":
-                    login({username: username, password: password})
+                    login({ username: username, password: password })
                     break
                 }
 
                 //noinspection JSAnnotator
-                function login(creds) {
+                function login (creds) {
                   self.userModel.login(creds,
-                    function(err, accessToken) {
+                    function (err, accessToken) {
                       if (err) {
                         return done(err)
                       }
                       if (accessToken) {
                         userProfile.accessToken = accessToken
-                        done(null, userProfile, {accessToken: accessToken})
+                        done(null, userProfile, { accessToken: accessToken })
                       } else {
-                        done(null, false, {message: "Failed to create token."})
+                        done(null, false, { message: "Failed to create token." })
                       }
                     })
                 }
               }
 
-              return user.hasPassword(password, function(err, ok) {
+              return user.hasPassword(password, function (err, ok) {
                 // Fail to login if email is not verified or invalid username/password.
                 // Unify error message in order not to give indication about the error source for
                 // security purposes.
@@ -272,16 +272,16 @@ passportConfigurator.configureProvider = function(name, options) {
                   return done(null, userProfile)
                 } else if (ok) {
                   errorMsg = "The email has not been verified."
-                  return done(null, user, {message: errorMsg})
+                  return done(null, user, { message: errorMsg })
                 } else {
                   errorMsg = "Invalid username/password combination. Please check your entries and try again."
-                  done(null, false, {message: errorMsg})
+                  done(null, false, { message: errorMsg })
                 }
               })
             }
 
             const errorMsg = "Invalid username/password combination. Please check your entries and try again."
-            done(null, false, {message: errorMsg})
+            done(null, false, { message: errorMsg })
           })
         }
       ))
@@ -290,17 +290,17 @@ passportConfigurator.configureProvider = function(name, options) {
     case "oauth1":
     case "oauth 1.0":
       passport.use(name, new AuthStrategy(_.defaults({
-          consumerKey: options.consumerKey,
-          consumerSecret: options.consumerSecret,
-          callbackURL: callbackURL,
-          passReqToCallback: true
-        }, options),
-        function(req, token, tokenSecret, profile, done) {
+        consumerKey: options.consumerKey,
+        consumerSecret: options.consumerSecret,
+        callbackURL: callbackURL,
+        passReqToCallback: true
+      }, options),
+        function (req, token, tokenSecret, profile, done) {
           if (link) {
             if (req.user) {
               self.userCredentialModel.link(
                 req.user.id, name, authScheme, profile,
-                {token: token, tokenSecret: tokenSecret}, options, done)
+                { token: token, tokenSecret: tokenSecret }, options, done)
             } else {
               done("No user is logged in")
             }
@@ -316,35 +316,35 @@ passportConfigurator.configureProvider = function(name, options) {
       break
     case "openid":
       passport.use(name, new AuthStrategy(_.defaults({
-          returnURL: options.returnURL,
-          realm: options.realm,
-          callbackURL: callbackURL,
-          passReqToCallback: true
-        }, options),
-        function(req, identifier, profile, done) {
+        returnURL: options.returnURL,
+        realm: options.realm,
+        callbackURL: callbackURL,
+        passReqToCallback: true
+      }, options),
+        function (req, identifier, profile, done) {
           if (link) {
             if (req.user) {
               self.userCredentialModel.link(
                 req.user.id, name, authScheme, profile,
-                {identifier: identifier}, options, done)
+                { identifier: identifier }, options, done)
             } else {
               done("No user is logged in")
             }
           } else {
             self.userIdentityModel.login(name, authScheme, profile,
-              {identifier: identifier}, options, loginCallback(req, done))
+              { identifier: identifier }, options, loginCallback(req, done))
           }
         }
       ))
       break
     case "openid connect":
       passport.use(name, new AuthStrategy(_.defaults({
-          clientID: clientID,
-          clientSecret: clientSecret,
-          callbackURL: callbackURL,
-          passReqToCallback: true
-        }, options),
-        function(req, accessToken, refreshToken, profile, done) {
+        clientID: clientID,
+        clientSecret: clientSecret,
+        callbackURL: callbackURL,
+        passReqToCallback: true
+      }, options),
+        function (req, accessToken, refreshToken, profile, done) {
           if (link) {
             if (req.user) {
               self.userCredentialModel.link(
@@ -358,7 +358,7 @@ passportConfigurator.configureProvider = function(name, options) {
             }
           } else {
             self.userIdentityModel.login(name, authScheme, profile,
-              {accessToken: accessToken, refreshToken: refreshToken},
+              { accessToken: accessToken, refreshToken: refreshToken },
               options, loginCallback(req, done))
           }
         }
@@ -366,12 +366,12 @@ passportConfigurator.configureProvider = function(name, options) {
       break
     default:
       passport.use(name, new AuthStrategy(_.defaults({
-          clientID: clientID,
-          clientSecret: clientSecret,
-          callbackURL: callbackURL,
-          passReqToCallback: true
-        }, options),
-        function(req, accessToken, refreshToken, profile, done) {
+        clientID: clientID,
+        clientSecret: clientSecret,
+        callbackURL: callbackURL,
+        passReqToCallback: true
+      }, options),
+        function (req, accessToken, refreshToken, profile, done) {
           if (link) {
             if (req.user) {
               self.userCredentialModel.link(
@@ -385,31 +385,55 @@ passportConfigurator.configureProvider = function(name, options) {
             }
           } else {
             self.userIdentityModel.login(name, authScheme, profile,
-              {accessToken: accessToken, refreshToken: refreshToken},
+              { accessToken: accessToken, refreshToken: refreshToken },
               options, loginCallback(req, done))
           }
         }
       ))
   }
 
-  const defaultCallback = function(req, res, next) {
+  const defaultCallback = function (req, res, next) {
     // The default callback
-    passport.authenticate(name, _.defaults({session: session},
-      options.authOptions), function(err, user, info) {
-      if (err) {
-        return next(err)
-      }
-      if (!user) {
-        if (options.json) {
-          return res.status(401).json("authentication error")
+    passport.authenticate(name, _.defaults({ session: session },
+      options.authOptions), function (err, user, info) {
+        if (err) {
+          return next(err)
         }
-        return res.redirect(failureRedirect)
-      }
-      if (session) {
-        req.logIn(user, function(err) {
-          if (err) {
-            return next(err)
+        if (!user) {
+          if (options.json) {
+            return res.status(401).json("authentication error")
           }
+          return res.redirect(failureRedirect)
+        }
+        if (session) {
+          req.logIn(user, function (err) {
+            if (err) {
+              return next(err)
+            }
+            if (info && info.accessToken) {
+              if (options.json) {
+                return res.json({
+                  "access_token": info.accessToken.id,
+                  userId: user.id
+                })
+              } else {
+                res.cookie("access_token", info.accessToken.id,
+                  {
+                    signed: req.signedCookies ? true : false,
+                  // maxAge is in ms
+                    maxAge: 1000 * info.accessToken.ttl,
+                    domain: (options.domain) ? options.domain : null
+                  })
+                res.cookie("userId", user.id.toString(), {
+                  signed: req.signedCookies ? true : false,
+                  maxAge: 1000 * info.accessToken.ttl,
+                  domain: (options.domain) ? options.domain : null
+                })
+              }
+            }
+            return res.redirect(successRedirect(req))
+          })
+        } else {
           if (info && info.accessToken) {
             if (options.json) {
               return res.json({
@@ -417,43 +441,19 @@ passportConfigurator.configureProvider = function(name, options) {
                 userId: user.id
               })
             } else {
-              res.cookie("access_token", info.accessToken.id,
-                {
-                  signed: req.signedCookies ? true : false,
-                  // maxAge is in ms
-                  maxAge: 1000 * info.accessToken.ttl,
-                  domain: (options.domain) ? options.domain : null
-                })
+              res.cookie("access_token", info.accessToken.id, {
+                signed: req.signedCookies ? true : false,
+                maxAge: 1000 * info.accessToken.ttl
+              })
               res.cookie("userId", user.id.toString(), {
                 signed: req.signedCookies ? true : false,
-                maxAge: 1000 * info.accessToken.ttl,
-                domain: (options.domain) ? options.domain : null
+                maxAge: 1000 * info.accessToken.ttl
               })
             }
           }
           return res.redirect(successRedirect(req))
-        })
-      } else {
-        if (info && info.accessToken) {
-          if (options.json) {
-            return res.json({
-              "access_token": info.accessToken.id,
-              userId: user.id
-            })
-          } else {
-            res.cookie("access_token", info.accessToken.id, {
-              signed: req.signedCookies ? true : false,
-              maxAge: 1000 * info.accessToken.ttl
-            })
-            res.cookie("userId", user.id.toString(), {
-              signed: req.signedCookies ? true : false,
-              maxAge: 1000 * info.accessToken.ttl
-            })
-          }
         }
-        return res.redirect(successRedirect(req))
-      }
-    })(req, res, next)
+      })(req, res, next)
   }
   /*
    * Redirect the user to Facebook for authentication.  When complete,
@@ -493,11 +493,11 @@ passportConfigurator.configureProvider = function(name, options) {
    */
   if (link) {
     self.app[callbackHTTPMethod](callbackPath, passport.authorize(name, _.defaults({
-        session: session,
+      session: session,
         // successReturnToOrRedirect: successRedirect,
-        successRedirect: successRedirect(),
-        failureRedirect: failureRedirect
-      }, options.authOptions)),
+      successRedirect: successRedirect(),
+      failureRedirect: failureRedirect
+    }, options.authOptions)),
       // passport.authorize doesn"t handle redirect
       (req, res, next) => {
         res.redirect(successRedirect(req))

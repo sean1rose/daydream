@@ -1,13 +1,13 @@
-var webpack = require("webpack")
-var path = require("path")
-var ExtractTextPlugin = require("extract-text-webpack-plugin")
-var CopyWebpackPlugin = require("copy-webpack-plugin")
+let webpack = require("webpack")
+let path = require("path")
+let ExtractTextPlugin = require("extract-text-webpack-plugin")
+let CopyWebpackPlugin = require("copy-webpack-plugin")
 
-var BUILD_DIR = path.resolve(__dirname, "public")
+let BUILD_DIR = path.resolve(__dirname, "public")
 
-var extractStyles = new ExtractTextPlugin("styles/[name].css")
+let extractStyles = new ExtractTextPlugin("styles/[name].css")
 
-var config = {
+let config = {
   context: path.join(__dirname, "src"),
   console: true,
   devtool: "cheap-module-eval-source-map",
@@ -18,12 +18,12 @@ var config = {
       "webpack-dev-server/client?https://localhost:8080", // WebpackDevServer host and port
       "webpack/hot/only-dev-server" // "only" prevents reload on syntax errors
     ],
-    "index": ["./sass/main.scss", "./sass/index.scss", "./scripts/main.js", "./scripts/signup.js"],
-    "signin": ["./sass/signin.scss", "./scripts/signin.js"],
-    "signup": ["./sass/signup.scss", "./scripts/signup.js"],
-    "pricing": ["./sass/pricing.scss"],
-    "send-reset": ["./scripts/send-reset.js"],
-    "reset-password": ["./scripts/reset-password"]
+    "index": [ "./sass/main.scss", "./sass/index.scss", "./scripts/main.js", "./scripts/signup.js" ],
+    "signin": [ "./sass/signin.scss", "./scripts/signin.js" ],
+    "signup": [ "./sass/signup.scss", "./scripts/signup.js" ],
+    "pricing": [ "./sass/pricing.scss" ],
+    "send-reset": [ "./scripts/send-reset.js" ],
+    "reset-password": [ "./scripts/reset-password" ]
   },
   output: {
     path: BUILD_DIR,
@@ -42,9 +42,9 @@ var config = {
         loader: "babel",
         query: {
           cacheDirectory: true,
-          presets: ["es2015", "react", "stage-0"]
+          presets: [ "es2015", "react", "stage-0" ]
         },
-        plugins: ["transform-runtime", "transform-object-rest-spread"]
+        plugins: [ "transform-runtime", "transform-object-rest-spread" ]
       },
       {
         test: /\.json$/,
@@ -128,7 +128,7 @@ var config = {
         // Doesn't copy any files with a txt extension
         "*.txt",
         // Doesn't copy any file, even if they start with a dot
-        {glob: "**/*", dot: true}
+        { glob: "**/*", dot: true }
       ]
     }),
     new webpack.ProvidePlugin({
@@ -137,8 +137,8 @@ var config = {
   ],
   resolve: {
     root: __dirname,
-    modulesDirectories: ["node_modules"],
-    extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx", ".json"],
+    modulesDirectories: [ "node_modules" ],
+    extensions: [ "", ".webpack.js", ".web.js", ".js", ".jsx", ".json" ],
     alias: {
       modernizr$: path.resolve(__dirname, ".modernizrrc")
     }
@@ -146,20 +146,20 @@ var config = {
 }
 
 // environment specific builds
-var loaders
+let loaders
 if (process.env.DEBUG_CSS) {
   config.devtool = "source-map"
   loaders = [
     {
       test: /\.scss$/,
-      loader: extractStyles.extract("style-loader", ["css-loader?sourceMap", "sass-loader?sourceMap"])
+      loader: extractStyles.extract("style-loader", [ "css-loader?sourceMap", "sass-loader?sourceMap" ])
     }
   ]
 } else {
   loaders = [
     {
       test: /\.scss$/,
-      loader: extractStyles.extract("style-loader", ["raw-loader", "sass-loader"])
+      loader: extractStyles.extract("style-loader", [ "raw-loader", "sass-loader" ])
     }
   ]
 }

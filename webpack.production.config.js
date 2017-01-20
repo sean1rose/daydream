@@ -1,26 +1,26 @@
-var webpack = require("webpack")
-var path = require("path")
-var ExtractTextPlugin = require("extract-text-webpack-plugin")
-var CopyWebpackPlugin = require("copy-webpack-plugin")
-var AssetsPlugin = require("assets-webpack-plugin")
+let webpack = require("webpack")
+let path = require("path")
+let ExtractTextPlugin = require("extract-text-webpack-plugin")
+let CopyWebpackPlugin = require("copy-webpack-plugin")
+let AssetsPlugin = require("assets-webpack-plugin")
 
-var BUILD_DIR = path.resolve(__dirname, "public")
+let BUILD_DIR = path.resolve(__dirname, "public")
 
-var extractStyles = new ExtractTextPlugin("styles/[name].css")
+let extractStyles = new ExtractTextPlugin("styles/[name].css")
 
-var config = {
+let config = {
   context: path.join(__dirname, "src"),
   entry: {
     "app/index": [
       "./sass/app/main.scss", // main app stylesheet
       "./scripts/app/index.js" // Your appʼs entry point
     ],
-    "index": ["./sass/main.scss", "./sass/index.scss", "./scripts/main.js", "./scripts/signup.js"],
-    "signin": ["./sass/signin.scss", "./scripts/signin.js"],
-    "signup": ["./sass/signup.scss", "./scripts/signup.js"],
-    "pricing": ["./sass/pricing.scss"],
-    "send-reset": ["./scripts/send-reset.js"],
-    "reset-password": ["./scripts/reset-password"]
+    "index": [ "./sass/main.scss", "./sass/index.scss", "./scripts/main.js", "./scripts/signup.js" ],
+    "signin": [ "./sass/signin.scss", "./scripts/signin.js" ],
+    "signup": [ "./sass/signup.scss", "./scripts/signup.js" ],
+    "pricing": [ "./sass/pricing.scss" ],
+    "send-reset": [ "./scripts/send-reset.js" ],
+    "reset-password": [ "./scripts/reset-password" ]
   },
   output: {
     path: BUILD_DIR,
@@ -35,9 +35,9 @@ var config = {
         query: {
           cacheDirectory: true,
           compact: true,
-          presets: ["es2015", "react", "stage-0"]
+          presets: [ "es2015", "react", "stage-0" ]
         },
-        plugins: ["transform-runtime", "transform-object-rest-spread"]
+        plugins: [ "transform-runtime", "transform-object-rest-spread" ]
       },
       {
         test: /\.json$/,
@@ -68,7 +68,7 @@ var config = {
       },
       {
         test: /\.scss$/,
-        loader: extractStyles.extract("style-loader", ["raw-loader", "sass-loader"])
+        loader: extractStyles.extract("style-loader", [ "raw-loader", "sass-loader" ])
       },
       {
         test: /\.modernizrrc$/,
@@ -137,7 +137,7 @@ var config = {
         // Doesn't copy any files with a txt extension
         "*.txt",
         // Doesn't copy any file, even if they start with a dot
-        {glob: "**/*", dot: true}
+        { glob: "**/*", dot: true }
       ]
     }),
     new webpack.ProvidePlugin({
@@ -146,8 +146,8 @@ var config = {
   ],
   resolve: {
     root: __dirname,
-    modulesDirectories: ["node_modules"],
-    extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx", ".json"],
+    modulesDirectories: [ "node_modules" ],
+    extensions: [ "", ".webpack.js", ".web.js", ".js", ".jsx", ".json" ],
     alias: {
       modernizr$: path.resolve(__dirname, ".modernizrrc")
     }
