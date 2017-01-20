@@ -29,7 +29,7 @@ for (let asset of assetValues) {
   }
 }
 
-fetch("https://api.cloudflare.com/client/v4/zones?name=instataskapp.com&status=active&order=name&direction=desc", {
+fetch("https://api.cloudflare.com/client/v4/zones?name=daydream.com&status=active&order=name&direction=desc", {
   headers: {
     "X-Auth-Email": env.cloudflare.email,
     "X-Auth-Key": env.cloudflare.key,
